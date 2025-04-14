@@ -1,19 +1,21 @@
 doctype html
 html
   head
-    title Update Custom Object Form | Integrating With HubSpot I Practicum
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
   body
-    h1 Add a New Record
-    form(method='POST', action='/update-cobj')
-      label(for='name') Name:
-      input(type='text', name='name', required)
-      br
-      label(for='bio') Bio:
-      input(type='text', name='bio')
-      br
-      label(for='type') Type:
-      input(type='text', name='type')
-      br
-      button(type='submit') Submit
+    h1 Create a New Custom Object Record
+    form(action="/update-cobj", method="POST")
+      div
+        label(for="name") Name:
+        input(type="text", name="name", required=true)
+      div
+        label(for="bio") Bio:
+        input(type="text", name="bio", required=true)
+      div
+        label(for="type") Type:
+        input(type="text", name="type", required=true)
+      div
+        button(type="submit") Submit
     br
-    a(href='/') Return to the homepage
+    a(href="/") Return to the homepage

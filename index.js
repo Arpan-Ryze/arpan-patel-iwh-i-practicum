@@ -37,3 +37,32 @@ app.get('/', async (req, res) => {
 app.get('/update-cobj', (req, res) => {
     res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum' });
 });
+
+// ROUTE 3:
+app.post('/update-cobj', async (req, res) => {
+    const { name, bio, type } = req.body;
+
+    const data = {
+        properties: {
+            name,
+            bio,
+            type
+        }
+    };
+
+    const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_TYPE}`;
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        await axios.post(url, data, { headers });
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error creating record:', error.response?.data || error.message);
+        res.status(500).send('Failed to create record');
+    }
+});
+
+app.listen(3000, () => console.log('Listening on http://localhost:3000'));

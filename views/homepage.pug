@@ -1,19 +1,25 @@
 doctype html
 html
   head
-    title Homepage | Custom Object Records
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
   body
     h1 Custom Object Records
-    a(href='/update-cobj') Add to this table
-    table(border='1')
-      thead
-        tr
-          th Name
-          th Bio
-          th Type
-      tbody
-        each record in records
+    a(href="/update-cobj") Add to this table
+    br
+    br
+    if records.length
+      table(border="1")
+        thead
           tr
-            td= record.properties.name
-            td= record.properties.bio
-            td= record.properties.type
+            th Name
+            th Bio
+            th Type
+        tbody
+          each record in records
+            tr
+              td= record.properties.name
+              td= record.properties.bio
+              td= record.properties.type
+    else
+      p No records found.
