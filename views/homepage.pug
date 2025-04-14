@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title Homepage | Custom Object Records
+  body
+    h1 Custom Object Records
+    a(href='/update-cobj') Add to this table
+    table(border='1')
+      thead
+        tr
+          th Name
+          th Bio
+          th Type
+      tbody
+        each record in records
+          tr
+            td= record.properties.name
+            td= record.properties.bio
+            td= record.properties.type
